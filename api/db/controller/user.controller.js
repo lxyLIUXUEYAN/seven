@@ -19,7 +19,7 @@ let addUser = (req,res)=>{
 // 删除用户信息
 let delUser = (req,res)=>{
     let _id = req.body._id;
-    userModel.remove({_id : id})
+    userModel.remove({_id : _id})
         .then((data) =>{
             console.log(data);
             utils.sendRes(res,0,"删除成功",null);
@@ -34,7 +34,7 @@ let delUser = (req,res)=>{
 let updateUser = (req,res)=>{
     let _id = req.body._id;
     let {name,pass} = req.body;
-    userModel.updateOne({_id : id},{name,pass})
+    userModel.updateOne({_id : _id},{name,pass})
         .then((data)=>{
             console.log(data);
             utils.sendRes(res,0,"update ok",null)

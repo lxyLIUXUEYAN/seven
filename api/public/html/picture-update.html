@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 	<script>DD_belatedPNG.fix('*');</script>
 	<![endif]-->
-	<title>新增用户</title>
+	<title>新增图片</title>
 	<link href="lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 	<style>
 		img{
@@ -58,7 +58,7 @@
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer /作为公共模版分离出去-->
+<script type="text/javascript" src="static/h-ui/js/H-ui.admin.js"></script> <!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
@@ -66,12 +66,25 @@
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script>
 <script type="text/javascript">
-	//上传图片获取相关的路径信息
+	let id = localStorage.getItem("_id");
 	let OL_Action_Root='http://localhost:3000';
+
+	//根据当前的id获取相关食品信息 写入到页面
+	function getUserData(){
+		$.post(OL_Action_Root + '/admin/user/getUserById',{_id:id},function(res){
+			if(res.err === 0){
+				// 修改页面的数据信息
+				$('#name').val(res.data[0].name);
+				$('#pass').val(res.data[0].pass);
+			}
+		})
+	}
+	getUserData();
+
 	function addUser(){
 		// alert("刷新父级的时候会自动关闭弹层。")
 		// window.parent.location.reload();
-		//添加新的用户信息
+		//添加新的食品信息
 		let data={name:$('#name').val(),
 			pass:$('#pass').val()};
 		$.post(OL_Action_Root+'/admin/user/addUser',data,(res)=>{
@@ -84,7 +97,6 @@
 			}
 		})
 	}
-
 
 
 

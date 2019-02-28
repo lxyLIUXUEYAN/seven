@@ -6,6 +6,6 @@ let UserSchema = new mongoose.Schema({
 });
 
 // 将Schema对象转化为数据模型
-let model = mongoose.model("foods",UserSchema);
+let model = mongoose.model("user",UserSchema);
 
 module.exports = model;

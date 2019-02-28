@@ -15,8 +15,12 @@ app.use("/public",express.static(path.join(__dirname,"./public")));
 
 //路由配置
 const adminUser = require("./router/userRouter");
+const adminTable = require("./router/tableRouter");
+const adminUpload = require("./router/uploadRouter");
 
 app.use("/admin/user",adminUser);
+app.use("/admin/tables",adminTable);
+app.use("/admin/upload",adminUpload);
 
 app.post("/test",utils.verify,(req,res)=>{
    res.send("测试ok");

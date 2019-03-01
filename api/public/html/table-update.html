@@ -121,7 +121,7 @@
 			imgPath:imgPath,
 			desc:$('#desc').val(),
 			num:$('#num').val()};
-		$.post(OL_Action_Root+'/admin/tables/addTable',data,(res)=>{
+		$.post(OL_Action_Root+'/admin/tables/updateTable',data,(res)=>{
 			if(res.err === 0){
 				// 取消按钮的关闭事件  关闭当前页面
 				// layer_close();
@@ -138,7 +138,7 @@
 
 		let  file=$("#imagelist")[0].files[0] ;//在文件域中选中的图片
 		var formData = new FormData();  //创建一个空的formdata对象
-		formData.append('hehe',file);
+		formData.append('pic',file);
 		$.ajax({
 			url: OL_Action_Root+'/admin/upload/img',
 			type: 'POST',
